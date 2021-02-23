@@ -1,5 +1,5 @@
 const root = document.querySelector('#root');
-
+//Creating interface
 //Header
 const header = document.createElement('header'),
       headerTitle = document.createElement('h1'),
@@ -32,7 +32,7 @@ const firstSection = document.createElement('section'),
 
 firstSection.classList.add('left');
 firstButton.classList.add('btn');
-firstButton.classList.add('chek');
+firstButton.classList.add('check');
 
 class Input{
     constructor(type, addClass, parent){
@@ -82,3 +82,67 @@ secondSection.append(secondScore);
 secondScore.append(secondSpanScore);
 secondSection.append(secondHighscore);
 secondHighscore.append(secondSpan);
+
+//Creating a Game
+let secretNumber = Math.trunc(Math.random()*20) + 1;
+let score = 20;
+let highScore = null;
+
+const checkBtn = document.querySelector('.check'),
+      checkMessage = document.querySelector('.message'),
+      checkNumber = document.querySelector('.number'),
+      checkScore = document.querySelector('.score'),
+      againBtn = document.querySelector('.again'),
+      highScoreText = document.querySelector('.highscore');
+
+function displayMessage(message){
+    checkMessage.textContent = message;
+}
+
+checkBtn.addEventListener('click', () => {
+
+    const guessInput = Number(document.querySelector('.guess').value);
+
+    if(!guessInput){
+        //no input number
+        displayMessage(`⛔ No number!`);
+
+    } else if (guessInput === secretNumber){
+        //when u win
+        displayMessage(`👑 Correct Number!`);
+        document.body.style.backgroundColor = '#60b347';
+        checkNumber.style.width = '30rem';
+        checkNumber.textContent = secretNumber;
+
+        if(score > highScore){
+            highScore = score;
+            highScoreText.textContent = highScore;
+        }
+
+    } else if(guessInput !== secretNumber){
+        if (score > 1){
+            displayMessage(guessInput < secretNumber ? '💔 Too Low!' : '👏 Too High!');
+            score --;
+            checkScore.textContent = score;
+        } else {
+            displayMessage(`🚩 GAME OVER!`);
+            checkScore.textContent = 0;
+        }
+    }
+});
+
+againBtn.addEventListener('click', () => {
+    const guess = document.querySelector('.guess');
+    guess.value = null;
+
+    score = 20;
+    secretNumber = Math.trunc(Math.random()*20) + 1;
+    displayMessage(`Start guessing...`);
+
+    checkScore.textContent = score;
+    checkNumber.textContent = '?';
+
+    document.body.style.backgroundColor = '#222';
+    checkNumber.style.width = '15rem';
+
+});

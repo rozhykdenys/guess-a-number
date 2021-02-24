@@ -15,4 +15,4 @@ The game has two players. You have to get 100 score, then you'll win but you sho
 It turn "one", you'll lose your scores so if you wanna safe your scores just skip your turn and 
 Maybe you'll be a winner!
 
-<italic>Technologies: JavaScript/CSS</italic>
+<i>Technologies: JavaScript/CSS</i>

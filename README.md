@@ -1,4 +1,4 @@
-GUESS MY NUMBER GAME
+<b>GUESS MY NUMBER GAME</b>
 
 In this Game, you should guess a number in the box.
 If it's Too High or Too Low you'll have a massage that can help you to guess it quicker!

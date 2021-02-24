@@ -7,7 +7,7 @@ Also, you have Higher Score paragraph where you can see your best result!
 Moreover, when you win, your background change to green and number will show!
 Then just press a button "Again" and try it one more time!
 
-Technologies: JavaScript/CSS
+<i>Technologies: JavaScript/CSS</i>
 
 <b>PIG GAME</b>
 

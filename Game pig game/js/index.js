@@ -48,3 +48,38 @@ firstSection.classList.add('player', 'player--0', 'player--active');
 const secondSection = document.querySelectorAll('section')[1];
 secondSection.classList.add('player', 'player--1');
 
+class Image{
+    constructor(src, alt, classess, parent){
+        this.src = src;
+        this.alt = alt;
+        this.classess = classess;
+        this.parent = parent;
+    }
+    render(){
+        const span = document.createElement('span');
+        span.innerHTML = `<img src=${this.src} alt=${this.alt} class=${this.classess} >`;
+
+        this.parent.append(span);
+    }
+}
+
+new Image( 'img/dice-5.png', 'Playing dice', 'dice', main).render();
+
+class Button{
+    constructor(classess, newClass, text, parent){
+        this.classess = classess;
+        this.newClass = newClass;
+        this.text = text;
+        this.parent = parent;
+    }
+    render(){
+        const span = document.createElement('span');
+        span.innerHTML = ` <button class='${this.classess} ${this.newClass}' >${this.text}</button>`;
+
+        this.parent.append(span);
+    }
+}
+
+new Button ('btn', 'btn--new', '🔄 New game', main).render();
+new Button ('btn', 'btn--roll', '🎲 Roll dice', main).render();
+new Button ('btn', 'btn--hold', '📥 Hold', main).render();

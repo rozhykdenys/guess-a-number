@@ -83,3 +83,82 @@ class Button{
 new Button ('btn', 'btn--new', '🔄 New game', main).render();
 new Button ('btn', 'btn--roll', '🎲 Roll dice', main).render();
 new Button ('btn', 'btn--hold', '📥 Hold', main).render();
+
+//Creating game
+const scoreOne = document.querySelector('#score--0'),
+      scoreTwo = document.querySelector('#score--1'),
+      dice = document.querySelector('.dice'),
+      btnNew = document.querySelector('.btn--new'),
+      btnRoll = document.querySelector('.btn--roll'),
+      btnHold = document.querySelector('.btn--hold'),
+      currentScoreOne = document.querySelector('#current--0'),
+      currentScoreTwo = document.querySelector('#current--1'),
+      playerOne = document.querySelector('.player--0'),
+      playerTwo = document.querySelector('.player--1');
+
+      let scores, score, activePlayer, playing;
+
+function init(){
+    scores = [0, 0];
+    score = 0;
+    activePlayer = 0;
+    playing = true;
+
+    scoreOne.textContent = 0;
+    scoreTwo.textContent = 0;
+
+    dice.classList.add('hide');
+    currentScoreOne.textContent = 0;
+    currentScoreTwo.textContent = 0;
+
+    playerOne.classList.remove('player--winner');
+    playerTwo.classList.remove('player--winner');
+    playerOne.classList.add('player--active');
+}
+init();
+
+function switchPlayer (){
+    document.querySelector(`#current--${activePlayer}`).textContent = 0;
+        score = 0;
+        activePlayer = activePlayer === 0 ? 1 : 0;
+        playerOne.classList.toggle('player--active');
+        playerTwo.classList.toggle('player--active');
+}
+
+//Roll button
+btnRoll.addEventListener('click', () => {
+    if (playing){
+    const diceNum = Math.trunc(Math.random() * 6) + 1;
+
+    dice.classList.remove('hide')
+    dice.src = `img/dice-${diceNum}.png`;
+
+    if(diceNum !== 1){
+        score += diceNum;
+        document.querySelector(`#current--${activePlayer}`).textContent = score;
+    } else {
+        switchPlayer ();
+        }
+    }
+});
+
+btnHold.addEventListener('click', () => {
+    if(playing){
+        scores[activePlayer] += score;
+    document.querySelector(`#score--${activePlayer}`).textContent = scores[activePlayer];
+    
+    if(scores[activePlayer] >= 100){
+        playing = false;
+        dice.classList.add('hide');
+
+        document.querySelector(`.player--${activePlayer}`).classList.add('player--winner');
+        document.querySelector(`.player--${activePlayer}`).classList.remove('player--active');
+
+    } else {
+        switchPlayer ();
+        }
+    }    
+});
+
+btnNew.addEventListener('click', init);
+

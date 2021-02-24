@@ -9,10 +9,10 @@ Then just press a button "Again" and try it one more time!
 
 Technologies: JavaScript/CSS
 
-PIG GAME
+<b>PIG GAME</b>
 
 The game has two players. You have to get 100 score, then you'll win but you should remember if
 It turn "one", you'll lose your scores so if you wanna safe your scores just skip your turn and 
 Maybe you'll be a winner!
 
-Technologies: JavaScript/CSS
+<italic>Technologies: JavaScript/CSS</italic>
